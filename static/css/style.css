@@ -1,0 +1,36 @@
+h4 {
+   color: #dcdcdc;
+   padding-left: 20pt
+}
+
+td.cell{
+   background: #e6e6fa
+}
+
+td.not_finish{
+   background: #ffddf4
+}
+
+td.finish{
+   background: #98FB98
+}
+
+td.title{
+   width: 220pt;
+}
+
+td.leader{
+   width: 100pt;
+}
+
+td.duration{
+   width: 70pt;
+}
+
+td.members{
+   width: 100pt;
+}
+
+td.is_finished{
+   width: 100pt;
+}
