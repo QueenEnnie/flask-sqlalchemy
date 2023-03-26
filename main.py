@@ -9,6 +9,7 @@ from data.departments import Department
 
 from data.login_form import LoginForm
 from data.users_form import RegisterForm
+from data.job_form import JobForm
 from flask_login import LoginManager, login_user, login_required, logout_user
 
 
@@ -70,14 +71,36 @@ def register():
             return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(surname=form.surname.data, name=form.name.data, email=form.email.data,
-                    age=form.age.data, position=form.position.data, speciality=form.speciality.data,
-                    address=form.address.data)
+        user = User()
+        user.surname = form.surname.data
+        user.name = form.name.data
+        user.email = form.email.data
+        user.age = form.age.data
+        user.position = form.position.data
+        user.speciality = form.speciality.data
+        user.address = form.address.data
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@app.route('/addjob', methods=['GET', 'POST'])
+def add_job():
+    form = JobForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        jobs = Jobs()
+        jobs.job = form.job_title.data
+        jobs.team_leader = form.team_leader.data
+        jobs.work_size = form.work_size.data
+        jobs.collaborators = form.collaborators.data
+        jobs.is_finished = form.is_finished.data
+        db_sess.add(jobs)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('job.html', title='Adding a job', form=form)
 
 
 def main():
