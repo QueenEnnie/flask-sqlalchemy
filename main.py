@@ -1,5 +1,5 @@
 import datetime
-from data import db_session
+from data import db_session, jobs_api
 from flask import Flask
 from flask import render_template, redirect, request, abort
 
@@ -149,6 +149,7 @@ def news_delete(id):
 
 def main():
     db_session.global_init("db/blogs.db")
+    app.register_blueprint(jobs_api.blueprint)
     app.run()
 
 
