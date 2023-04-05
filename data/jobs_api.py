@@ -44,6 +44,9 @@ def create_job():
                                      'work_size', 'collaborators', 'is_finished']):
         return jsonify({'error': 'Bad request'})
     db_sess = db_session.create_session()
+    job_id = request.json.get("id")
+    if job_id and db_sess.query(Jobs).filter(Jobs.id == 1).first():
+        return jsonify({'error': 'Id already exists'})
     job = Jobs()
     job.team_leader = request.json["team_leader"]
     job.job = request.json["job"]

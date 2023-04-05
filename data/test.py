@@ -21,4 +21,5 @@ print(post('http://localhost:5000/api/jobs',
                  'job': 'life search',
                  'collaborators': '3, 4, 5',
                  'is_finished': False,
-                 'work_size': 26}).json())
+                 'work_size': 26,
+                 'id': 7}).json())
