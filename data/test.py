@@ -1,4 +1,4 @@
-from requests import get, post
+from requests import get, post, delete
 
 print(post('http://localhost:5000/api/jobs').json())  # ничего не отправлляется
 
@@ -23,3 +23,4 @@ print(post('http://localhost:5000/api/jobs',
                  'work_size': 39}).json())  # корректный запрос
 
 print(get('http://localhost:5000/api/jobs').json())  # получение всех работ
+
